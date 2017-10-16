@@ -1,6 +1,4 @@
-import java.util.concurrent.atomic.DoubleAccumulator
 
-import scala.annotation.tailrec
 ///*************Recursion ******************///
 
 /* Recursion is a powerful way of iterating over data,
@@ -75,6 +73,7 @@ To achieve this we often have to write a helper function takes an accumulator wh
 of the function into the next call of the function which then adds to its evaluation to it and passes
 it on down and so on.
  */
+import scala.annotation.tailrec
 
 def sumRecursive(l:List[Int]):Int={
   @tailrec
@@ -82,7 +81,7 @@ def sumRecursive(l:List[Int]):Int={
     if (l==Nil) accumulator
     else helper(l.tail,accumulator+l.head)
   }
-  helper(l,0)
+  helper(l,0) //<- the 0 to initialise the accumulator
 }
 /*
 each call will look something like this
@@ -99,5 +98,5 @@ sumRecursive(numList)
 
 /* when a function is tail recursive it will have a curved arrow instead of a twirl.
 We can also annotate the function as tail recurisve with @tailrec which means it will not
-compile if is changed so it is not tail recurrisve.
+compile if is changed so it
  */
