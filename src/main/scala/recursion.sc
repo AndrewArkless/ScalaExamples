@@ -83,14 +83,17 @@ def sumRecursive(l:List[Int]):Int={
   }
   helper(l,0) //<- the 0 to initialise the accumulator
 }
+
+
+
 /*
 each call will look something like this
 1::2::3::4::5::Nil, 0
-2::3::4::5::Nil,    1
-3::4::5::Nil,       3
-4::5::Nil,          6
-5:Nil,              10
-Nil,                15
+2::3::4::5::Nil,    1   (1+0)
+3::4::5::Nil,       3   (1+2)
+4::5::Nil,          6   (3+3)
+5:Nil,              10  (6+4)
+Nil,                15  (10+5)
 and return the result - 15
  */
 
@@ -100,3 +103,14 @@ sumRecursive(numList)
 We can also annotate the function as tail recurisve with @tailrec which means it will not
 compile if is changed so it
  */
+
+def sumRecursive1(l:List[Int]):Int={
+  @tailrec
+  def helper(l:List[Int],accumulator:Int):Int={
+    l match {
+      case Nil => accumulator
+      case h :: t =>helper(t, accumulator + h)
+    }
+  }
+  helper(l,0) //<- the 0 to initialise the accumulator
+}

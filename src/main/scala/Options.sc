@@ -75,6 +75,9 @@ toIntOpt("2") match {
 toIntOpt("23").map(x=>println(x))
 
 //Folding
+def multiplyBy2(i:Int)=i*2
+toIntOpt("A").fold(0)(x=>multiplyBy2(x))
+toIntOpt("1").fold(0)(x=>multiplyBy2(x))
 toIntOpt("A").fold(0)(_)
 //You can fold on an options where the first parameter is the default value if a none is returned
 //Folding on an option is possible, but not popular as it is harder to read. There is debate

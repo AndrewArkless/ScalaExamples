@@ -5,7 +5,7 @@ where they are missing
  */
 
 //A function which takes an explicit parameter, and one implicit
-//not the implicit is curried and comes at then end
+//not the implicit is curried and comes at the end
 
 def multiply(x:Int)(implicit y:Int)={
   x*y
