@@ -13,9 +13,16 @@ val cEric=new cPerson("Eric",83,"London")
 //}
 
 case class Person(name:String,
-                  age:Int,address:String)
+                  age:Int,
+                  address:String){
+  def multiplyAge=age*2
+}
 
-// all the parameters are the constructor
+/*
+  all the parameters are the constructor
+  you can still create methods ont the case class like you would with classes
+*/
+
 
 val eric=Person("Eric Blair",84,"London")
 //no New is required as case classes have an apply method automatically
@@ -23,7 +30,7 @@ val eric=Person("Eric Blair",84,"London")
 
 //Getters are created automatically
 eric.name
-
+eric.multiplyAge
 //eric.name="George Orwell" won't compile no setters are generated as
 //all the parameters are Vals and can't be changed
 
@@ -78,3 +85,14 @@ eric match {
   case Person("Eric Blair",84,_)=>println("Its eric aged 84")
   case _ => println("Who knows!")
 }
+
+//////////////////////////////////////////////////////
+
+//with guards!
+eric match {
+  case Person(_,age,_) if age<30 =>println("Is under 30!")
+  case Person(_,age,_) if age>=30 && age<=60=>println("Is between 30 and 60")
+  case Person(_,age,_) if age>60 =>println("Is older than 60!")
+  case _ => println("Who knows!")
+}
+
