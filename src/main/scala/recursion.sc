@@ -32,7 +32,7 @@ Here we interate over a list of Ints. A list has the useful feature of us being 
 */
 
 def sum(l:List[Int]):Int={
-  if (l==Nil) 0 //terminating condition
+  if (l==Nil) 0 //terminating condition and force the call to unwind and calculate.
   else l.head + sum(l.tail)
 }
 
@@ -78,7 +78,7 @@ import scala.annotation.tailrec
 def sumRecursive(l:List[Int]):Int={
   @tailrec
   def helper(l:List[Int],accumulator:Int):Int={
-    if (l==Nil) accumulator
+    if (l==Nil) accumulator //terminating condition just return the result
     else helper(l.tail,accumulator+l.head)
   }
   helper(l,0) //<- the 0 to initialise the accumulator
@@ -104,7 +104,7 @@ We can also annotate the function as tail recurisve with @tailrec which means it
 compile if is changed so it
  */
 
-def sumRecursive1(l:List[Int]):Int={
+def sumTailRecursive(l:List[Int]):Int={
   @tailrec
   def helper(l:List[Int],accumulator:Int):Int={
     l match {
@@ -114,3 +114,12 @@ def sumRecursive1(l:List[Int]):Int={
   }
   helper(l,0) //<- the 0 to initialise the accumulator
 }
+
+sumTailRecursive(numList)
+
+// the weird h :: t is a way of pattern matching on lists, the h and t are merely convention but
+// it means the list has a pattern of a head and a tail, h refers to the head, the t refers to the rest of the list
+// which could be either a value or NIL the :: is a way of constructing a List like this
+
+val l=1 :: 2 :: 3 :: Nil
+
