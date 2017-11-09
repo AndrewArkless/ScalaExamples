@@ -12,7 +12,7 @@ however you can extend from a class, abstract class or a trait...
  */
 
 
-sealed abstract class Notification {
+abstract class Notification {
   def getAttention:String
 }
 
@@ -53,6 +53,7 @@ def notified(n:Notification)={
   }
 
 }
+
 
 val sms=SMS("Boss","Another Meeting!")
 val postItNote=PostItNote("Password")
