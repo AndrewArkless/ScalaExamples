@@ -127,4 +127,11 @@ oneTwo collect {isOneOrTwo orElse neither}
 oneTwo collect {isOneOrThree orElse neither}
 
 
+val convertFn: PartialFunction[Any, Int] = {
+  case i: Int => i;
+  case s: String => s.toInt;
+  case Some(s: String) => s.toInt
+}
 
+List(0, 1, "2", "3", Some(4), Some("5"),6.5, None, null, Unit).
+  collect(convertFn)
