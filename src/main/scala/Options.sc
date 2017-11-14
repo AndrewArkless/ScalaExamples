@@ -37,6 +37,8 @@ def toIntOpt(in:String): Option[Int] ={
   }
 }
 
+val q =toIntOpt("2")
+
 /*All the consumer needs to know about this function needs to know,
  is if it is an Option it will only return 1 of 2 results.
   */
@@ -72,7 +74,7 @@ toIntOpt("2") match {
 
 //Mapping
 
-toIntOpt("23").map(x=>println(x))
+val qq=toIntOpt("23").map(x=>println(x))
 
 //Folding
 def multiplyBy2(i:Int)=i*2
