@@ -29,9 +29,9 @@ val divide1=(x:Int)=> {
 //or we could right the function as a Partial which can explicitly state the domain of values
 //it can handle.
 
-val dividePF = new PartialFunction[Int, Int] {
-  def apply(x: Int) = 42 / x
-  def isDefinedAt(x: Int) = x != 0
+val dividePF = new PartialFunction[Int, Double] {
+  def apply(x: Int): Double = 42 / x
+  def isDefinedAt(x: Int):Boolean = x != 0
 }
 
 // The apply method is the method which is called when a new class is created, and here we
@@ -46,7 +46,7 @@ if (dividePF.isDefinedAt(1)) divide(1)
 
 //A PF however is more commonly written in the format
 
-val dividePF2: PartialFunction[Int, Int] = {
+val dividePF2: PartialFunction[Int, Double] = {
   case d: Int if d != 0 => 42 / d
 }
 
@@ -93,7 +93,7 @@ def isEven:PartialFunction[Int,String]={
   case i:Int if (i%2 ==0) => s"$i is Even!"
 }
 
-val numsCollect=nums map {isOdd orElse isEven}
+val numsCollect=nums collect {isOdd orElse isEven}
 
 //what this is saying is try to apply the isODD to the value, if it is
 //not defined then try the IsEven.
