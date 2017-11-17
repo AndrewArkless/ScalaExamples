@@ -62,18 +62,19 @@ val calcTax=(wage:Int,taxRate:Int,personalAllowance:Int)=>{
 }
 
 def setTaxRate (f:(Int,Int,Int)=>Int)={
-  //some logic
-  f(_:Int,20,_:Int)
+  val taxRate=20 //some logic
+  f(_:Int,taxRate,_:Int)
 }
 
 def setPersonalAllowance(f:(Int,Int)=>Int)={
-  //someLogic
-  f(_:Int,5000)
+  val pa=5000 //someLogic
+  f(_:Int,pa)
 }
 
 def setWage(f:Int => Int)={
   //someLogic
-  f(25000)
+  val wage=25000
+  f(wage)
 }
 
 val taxDue=setWage(setPersonalAllowance(setTaxRate(calcTax)))
@@ -81,8 +82,9 @@ val taxDue=setWage(setPersonalAllowance(setTaxRate(calcTax)))
 
 def sendEmailCurried(to:String)(message:String)={
   println(s"Sending message $message to $to")
+  s"Sending message $message to $to"
 }
 
 sendEmailCurried("co worker")("Your code is great")
-val emailManager=sendEmailCurried("Manager")_
+val emailManager: (String) => String =sendEmailCurried("Manager")_
 emailManager("Pay rise!")

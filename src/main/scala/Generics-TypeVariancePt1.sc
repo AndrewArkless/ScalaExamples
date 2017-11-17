@@ -1,4 +1,3 @@
-import javax.activation.MailcapCommandMap
 
 /*
 Generics very basic
@@ -11,7 +10,10 @@ def randomName(names: Seq[String]): String = {
   names(randomNum)
 }
 
+/*
 
+This of course will only handle Seq's of strings
+ */
 val names = Seq("Aleka", "Christina", "Tyler", "Molly")
 val winner = randomName(names)
 
