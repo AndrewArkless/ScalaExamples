@@ -17,7 +17,7 @@ This of course will only handle Seq's of strings
 val names = Seq("Aleka", "Christina", "Tyler", "Molly")
 val winner = randomName(names)
 
-def randomElementGeneric[A](seq: Seq[A]): A = {
+def randomElementGeneric[A,B](seq: Seq[A]):A  = {
   val randomNum = util.Random.nextInt(seq.length)
   seq(randomNum)
 }
@@ -107,5 +107,6 @@ def addStuffI[A,B](x:A,y:A)(implicit f:(A,A)=>B)={
 }
 addStuffI(1,2)
 addStuffI(bob,laura)
+
 
 

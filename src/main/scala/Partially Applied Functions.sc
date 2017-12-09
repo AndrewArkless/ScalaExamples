@@ -22,7 +22,7 @@ val nextParam: (Int, Int) => Int =sum(1,_:Int,_:Int)
 //  1+b+c
 // where the first value a is now replaced by the literal
 
-val nextParam1=nextParam(2,_:Int)
+val nextParam1: (Int) => Int =nextParam(2,_:Int)
 
 //This create a partiallyApplied function which we assign to nextParam
 //and we can think of its type as (Int)=>Int and the body
@@ -45,7 +45,7 @@ def sendEmail(to:String,message:String)={
   println(s"Sending message $message to $to")
 }
 
-val sendMessageToBoss=sendEmail("my boss", _ :String)
+val sendMessageToBoss: (String) => Unit =sendEmail("my boss", _ :String)
 //general message
 sendEmail("co worker","Your code is great")
 
@@ -57,7 +57,7 @@ sendMessageToBoss("you are the BEST!")
 //You can also pass around a function building up it's
 //parameter as you go
 
-val calcTax=(wage:Int,taxRate:Int,personalAllowance:Int)=>{
+val calcTax: (Int, Int, Int) => Int = (wage:Int, taxRate:Int, personalAllowance:Int)=>{
   ((wage-personalAllowance)/100) * taxRate
 }
 
@@ -88,3 +88,12 @@ def sendEmailCurried(to:String)(message:String)={
 sendEmailCurried("co worker")("Your code is great")
 val emailManager: (String) => String =sendEmailCurried("Manager")_
 emailManager("Pay rise!")
+
+def add(x:Int,y:Int,z:Int)={ x+y+z}
+
+val curriedAdd=(add _).curried
+val xx=curriedAdd(1)
+val yy=xx(2)
+yy(3)
+
+

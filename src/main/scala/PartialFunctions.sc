@@ -23,7 +23,7 @@ val divide = (x: Int) => 42 / x
 //we could rewrite it so it is
 val divide1=(x:Int)=> {
     if (x==0) "Can't accept 0" // or throw an error
-    else 42/0 // or we could wrap in an Option
+    else 42/x // or we could wrap in an Option
 }
 
 //or we could right the function as a Partial which can explicitly state the domain of values
@@ -42,17 +42,16 @@ val dividePF = new PartialFunction[Int, Double] {
 
 // what we can do is call isDefined before calling the function like this
 
-if (dividePF.isDefinedAt(1)) divide(1)
-
 //A PF however is more commonly written in the format
 
-val dividePF2: PartialFunction[Int, Double] = {
+val dividePF2: PartialFunction[Int,Double] = {
   case d: Int if d != 0 => 42 / d
 }
 
 //rewriting this as a case statement is the equivalent of what is gone on before
 
-if (dividePF2.isDefinedAt(1)) divide(1)
+
+
 
 //on its own this probably doesn't look that impressive, but here is a problem it can solve
 //suppose you have a list of Ints and you want to apply the divide to them you could try
@@ -73,7 +72,6 @@ List(0,1,2) collect dividePF2
 List(42, "cat") collect { case i: Int => i + 1 }
 
 
-//The following are not partial functions as they have an output for every input
 
 //but the power comes with PF is that they can be chained together
 //So lets say we want to go over a list and return which is odd,
